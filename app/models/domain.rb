@@ -4,4 +4,8 @@ class Domain < ActiveRecord::Base
   before_create do |obj|
     obj.guid ||= SecureRandom.uuid
   end
+
+  def dns_record_guids
+    self.dns_records.collect(&:guid)
+  end
 end
