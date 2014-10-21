@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'jsonapi-resources', '0.0.7'
+gem 'jsonapi-resources', '0.0.8'
 gem 'rspec-rails'
 gem 'rspec_api_documentation', '>= 4.1'
 

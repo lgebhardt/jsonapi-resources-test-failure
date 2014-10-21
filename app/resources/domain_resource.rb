@@ -1,11 +1,11 @@
-require 'jsonapi/resource'
-
 class DomainResource < JSONAPI::Resource
+  primary_key :guid
+
   attributes :id, :name
 
-  has_many :records#, class_name: 'Dns::Record'#, key: 'record_ids'#, primary_key: 'guid'
+  has_many :records, foreign_key: :record_guids
 
-  def id
-    @model.guid
+  def record_guids
+    @model.dns_records.collect(&:guid)
   end
 end

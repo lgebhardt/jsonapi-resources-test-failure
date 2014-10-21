@@ -1,12 +1,20 @@
-require 'jsonapi/resource'
-
 class RecordResource < JSONAPI::Resource
-  attributes :id, :name
+  primary_key :guid
 
-  # belongs_to :domain#, class_name: 'Dns::Record'#, key: 'record_ids'#, primary_key: 'guid'
+  attributes :id, :content
 
-  def id
-    @model.guid
+  has_one :domain, foreign_key: :domain_guid
+
+  routing_options :param => :guid
+
+  model_name 'Dns::Record'
+
+  def domain_guid
+    @model.domain.guid
+  end
+
+  def domain_guid=(guid)
+    @model.domain = Domain.find_by(guid: guid)
   end
 end
 

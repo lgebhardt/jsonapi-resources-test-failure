@@ -10,6 +10,7 @@ resource 'Domains' do
   get '/domains' do
     example_request 'Listing all domains' do
       expect(status).to eql(200)
+      puts records_for_domain.map(&:guid)
       puts JSON.parse(response_body)
     end
   end
